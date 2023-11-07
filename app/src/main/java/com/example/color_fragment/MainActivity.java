@@ -27,10 +27,33 @@ public class MainActivity extends AppCompatActivity {
             ColorFragment colorFragment = ColorFragment.newInstance(color);
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.frame1, colorFragment, "colorFragment")
+                    .replace(R.id.frame2, colorFragment, "colorFragment")
                     .commit();
         });
 
+        transfer.setOnClickListener(view -> {
+            ColorFragment colorFragment = (ColorFragment) getSupportFragmentManager().findFragmentByTag("colorFragment");
+            if (colorFragment != null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(colorFragment)
+                        .commit();
+                ColorFragment newFragment = ColorFragment.newInstance(ColorFragment.getTextColor());
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.frame1, newFragment, "colorFragment")
+                        .commit();
+            }
+        });
+
+        remove.setOnClickListener(view -> {
+            ColorFragment colorFragment = (ColorFragment) getSupportFragmentManager().findFragmentByTag("colorFragment");
+            if (colorFragment != null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .remove(colorFragment)
+                        .commit();
+            }
+        });
 
     }
 }

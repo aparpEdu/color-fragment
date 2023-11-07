@@ -14,12 +14,16 @@ import com.example.color_fragment.R;
 
 public class ColorFragment extends Fragment {
 
+    private static Integer textColor;
+
+
     public ColorFragment() {}
 
     public static ColorFragment newInstance(Integer color) {
         
         Bundle args = new Bundle();
         args.putInt("color", color);
+        textColor = color;
         ColorFragment fragment = new ColorFragment();
         fragment.setArguments(args);
         return fragment;
@@ -39,5 +43,9 @@ public class ColorFragment extends Fragment {
         if (args != null) {
             textView.setTextColor(args.getInt("color", 0));
         }
+    }
+
+    public static Integer getTextColor() {
+        return textColor;
     }
 }
